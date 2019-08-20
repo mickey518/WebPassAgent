@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,6 +27,20 @@ namespace WebPassAgent
         public PassPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            var pass = new WebPass();
+            pass.Id = Guid.NewGuid();
+            pass.Host = boxWebHost.Text;
+            pass.Uri = boxWebHost.Text;
+            pass.Username = boxUsername.Text;
+            pass.Password = boxPassword.Password;
+
+            //Task.Run(async () => await WebPassManager.Add(pass));
+            await WebPassManager.Add(pass);
+            MainPage.ContentFrame.Navigate(typeof(PassListPage));
         }
     }
 }

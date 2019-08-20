@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -59,6 +60,8 @@ namespace WebPassAgent
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
+            SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+            rootFrame.Navigated += RootFrame_Navigated;
 
             if (e.PrelaunchActivated == false)
             {
@@ -71,6 +74,21 @@ namespace WebPassAgent
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+        }
+
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = ((Frame)sender).CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void App_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                rootFrame.GoBack();
             }
         }
 

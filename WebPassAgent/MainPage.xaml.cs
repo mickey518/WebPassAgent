@@ -27,6 +27,22 @@ namespace WebPassAgent
         {
             this.InitializeComponent();
             ContentFrame = contentFrame;
+            contentFrame.Navigated += ContentFrame_Navigated;
+            this.NavView.BackRequested += NavView_BackRequested;
+        }
+
+        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (ContentFrame != null && ContentFrame.CanGoBack)
+            {
+                ContentFrame.GoBack();
+            }
+        }
+
+        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            this.NavView.IsBackButtonVisible = ((Frame)sender).CanGoBack ? NavigationViewBackButtonVisible.Visible : NavigationViewBackButtonVisible.Collapsed;
+            this.NavView.IsBackEnabled = ((Frame)sender).CanGoBack;
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)

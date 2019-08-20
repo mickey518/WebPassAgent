@@ -70,7 +70,13 @@
                             RowDetailsVisibilityMode="Collapsed"
                             SelectionMode="Extended"
                             RowGroupHeaderPropertyNameAlternative="Range"
-                           CellEditEnded="PassList_CellEditEnded">
+                            CellEditEnded="PassList_CellEditEnded"
+                            >
+            <controls:DataGrid.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Name="mfDel" Text="Del" Click="MfDel_Click"></MenuFlyoutItem>
+                </MenuFlyout>
+            </controls:DataGrid.ContextFlyout>
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Id" Tag="Id" Binding="{Binding Id}" />
                 <controls:DataGridTextColumn Header="Host" Tag="Host" Binding="{Binding Host}" />

@@ -9,6 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock>This is a append new pass page</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="12">
+            <TextBlock Text="Add" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Width="300" Margin="10" HorizontalAlignment="Left">
+            <TextBox Name="boxWebHost" Header="Enter Web Site :" PlaceholderText="cn.bing.com" />
+            <TextBox Name="boxUsername" Header="Enter your username :" PlaceholderText="mickey" />
+            <PasswordBox Name="boxPassword" Header="Enter your Password :" PlaceholderText="password" PasswordChar="*" IsPasswordRevealButtonEnabled="True" />
+
+            <Button Name="btnSave" Click="BtnSave_Click" HorizontalAlignment="Right" Margin="20, 10" Content="ok"/>
+        </StackPanel>
     </Grid>
 </Page>
