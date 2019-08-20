@@ -78,10 +78,10 @@
                 </MenuFlyout>
             </controls:DataGrid.ContextFlyout>
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="Id" Tag="Id" Binding="{Binding Id}" />
+                <!--<controls:DataGridTextColumn Header="Id" Tag="Id" Binding="{Binding Id}" />-->
                 <controls:DataGridTextColumn Header="Host" Tag="Host" Binding="{Binding Host}" />
                 <controls:DataGridTextColumn Header="Username" Tag="Username" Binding="{Binding Username}" />
-                <controls:DataGridTextColumn Header="Password" Tag="Password" Binding="{Binding Password}" />
+                <controls:DataGridTextColumn Header="Password" Tag="Password" IsReadOnly="True" Binding="{Binding DisaplyPwd}" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
     </Grid>

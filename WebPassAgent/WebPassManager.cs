@@ -32,6 +32,7 @@ namespace WebPassAgent
         public static async Task Add(WebPass webPass)
         {
             if (webPass == null) return;
+            if (string.IsNullOrWhiteSpace(webPass.Host) && string.IsNullOrWhiteSpace(webPass.Username) && string.IsNullOrWhiteSpace(webPass.Password)) return;
             var webPasses = await GetWebPassesAsync();
             if (webPasses == null)
             {
